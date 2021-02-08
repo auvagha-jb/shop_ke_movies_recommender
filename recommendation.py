@@ -4,7 +4,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 def get_data():
-        movie_data = pd.read_csv('dataset/movie_data.csv.zip')
+        movie_data = pd.read_csv('datasets/movie_data.csv.zip')
         movie_data['original_title'] = movie_data['original_title'].str.lower()
         return movie_data
 
@@ -62,7 +62,7 @@ def results(movie_name):
         transform_result = transform_data(combine_result,find_movie)
 
         if movie_name not in find_movie['original_title'].unique():
-                return 'Movie not in Database'
+                return []
 
         else:
                 recommendations = recommend_movies(movie_name, find_movie, combine_result, transform_result)
